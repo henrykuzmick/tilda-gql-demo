@@ -11,8 +11,7 @@ graphqlRouter.use(
     schema,
     graphiql: false,
     context: {
-      // @ts-ignore
-      user: req.user,
+      token: req.headers.authorization,
     },
   }))
 );
