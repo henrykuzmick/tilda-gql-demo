@@ -29,7 +29,7 @@ type User {
   bio: String
   capabilities: String
   location: String
-  organizations: [OrgMembership!]!
+  orgMemberships: [OrgMembership!]!
 }
 
 type OrgMembership {
