@@ -1,0 +1,46 @@
+type Organization {
+  id: ID!
+  alias: String
+  name: String!
+  url: String
+  country: String
+  state: String
+  city: String
+  postalCode: String
+  email: String
+  contactPhone: String
+  bio: String
+  orgType: OrgType!
+}
+
+enum OrgType {
+  SMO
+  CRO
+  Sponsor
+}
+
+type User {
+  id: ID!
+  onboarded: Boolean!
+  username: String!
+  name: String
+  email: String!
+  contact: String
+  bio: String
+  capabilities: String
+  location: String
+  organizations: [OrgMembership!]!
+}
+
+type OrgMembership {
+  role: String!
+  user: User!
+  organization: Organization!
+}
+
+type Query {
+  myProfile: User!
+  user(id: ID!): User
+  organizations: [Organization!]!
+  organization(id: ID!): Organization
+}
