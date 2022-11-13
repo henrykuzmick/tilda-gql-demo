@@ -1,6 +1,7 @@
+import { GraphQLYogaError } from "graphql-yoga";
 import axios from "axios";
 
-const userRelationships = {
+export const User = {
   orgMemberships: async (_, __, { token }) => {
     try {
       const res = await axios.get("/myprofile", {
@@ -29,9 +30,7 @@ const userRelationships = {
         return response;
       }
     } catch (e) {
-      throw new Error("Could not fetch");
+      throw new GraphQLYogaError("Could not fetch");
     }
   },
 };
-
-export default userRelationships;

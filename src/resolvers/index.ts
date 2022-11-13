@@ -1,9 +1,7 @@
-import Query from "./queries";
-import relationships from "./relationships";
+import { Query } from "./query";
+import { User } from "./user";
 
-const resolversMap = {
+export const resolvers = {
   Query,
-  ...relationships,
+  User,
 };
-
-export default resolversMap;

@@ -40,7 +40,6 @@ type OrgMembership {
 
 type Query {
   myProfile: User!
-  user(id: ID!): User
   organizations: [Organization!]!
   organization(id: ID!): Organization
 }
