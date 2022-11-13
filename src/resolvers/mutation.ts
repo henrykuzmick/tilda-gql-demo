@@ -2,7 +2,7 @@ import { GraphQLYogaError } from "graphql-yoga";
 import axios from "axios";
 
 export const Mutation = {
-  updateOrganization: async (_, { id, ...args }, { token }) => {
+  updateOrganization: async (_, { id, value }, { token }) => {
     try {
       const org = await axios.get(`/organizations/${id}`, {
         headers: {
@@ -10,11 +10,13 @@ export const Mutation = {
         },
       });
 
+      console.log({ ...org.data, ...value });
+
       const res = await axios.put(
         `/organizations/${id}`,
         {
           ...org.data,
-          ...args,
+          ...value,
         },
         {
           headers: {
@@ -28,7 +30,8 @@ export const Mutation = {
         ...res.data,
       };
     } catch (e) {
-      throw new GraphQLYogaError("Could not fetch");
+      console.log(e);
+      throw new GraphQLYogaError("Could not update");
     }
   },
 };

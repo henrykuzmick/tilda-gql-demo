@@ -45,11 +45,18 @@ type Query {
   organization(id: ID!): Organization
 }
 
+input OrganizationUpdate {
+  name: String
+  bio: String
+  email: String
+  alias: String
+  url: String
+  country: String
+  state: String
+  city: String
+  postalCode: String
+}
+
 type Mutation {
-  updateOrganization(
-    id: ID!
-    name: String
-    bio: String
-    email: String
-  ): Organization
+  updateOrganization(id: ID!, value: OrganizationUpdate!): Organization
 }
