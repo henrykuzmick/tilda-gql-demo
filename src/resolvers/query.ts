@@ -35,7 +35,20 @@ export const Query = {
     }
   },
 
-  organization: async (_, { id }) => {
-    return null;
+  organization: async (_, { id }, { token }) => {
+    try {
+      const res = await axios.get(`/organizations/${id}`, {
+        headers: {
+          authorization: token,
+        },
+      });
+
+      return {
+        id: res.data.tildaid,
+        ...res.data,
+      };
+    } catch (e) {
+      throw new GraphQLYogaError("Could not fetch");
+    }
   },
 };

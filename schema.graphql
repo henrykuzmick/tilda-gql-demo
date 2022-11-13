@@ -44,3 +44,12 @@ type Query {
   organizations: [Organization!]!
   organization(id: ID!): Organization
 }
+
+type Mutation {
+  updateOrganization(
+    id: ID!
+    name: String
+    bio: String
+    email: String
+  ): Organization
+}
