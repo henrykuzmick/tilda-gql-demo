@@ -18,7 +18,6 @@ export const Study = {
         });
 
         sponsors = res.data.result;
-        // console.log(sponsors);
       }
 
       const sponsor = sponsors?.find(
@@ -30,7 +29,6 @@ export const Study = {
         id: sponsor.tildaid,
       };
     } catch (e) {
-      console.log(e);
       throw new GraphQLYogaError("Could not fetch");
     }
   },
