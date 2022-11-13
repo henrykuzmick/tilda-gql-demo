@@ -54,7 +54,8 @@ type Study {
 type Sponsor {
   id: ID!
   name: String!
-  filename: String!
+  filename: String
+  logo: String
 }
 
 input OrganizationUpdate {
