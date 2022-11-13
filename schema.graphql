@@ -39,10 +39,22 @@ type OrgMembership {
   organization: Organization!
 }
 
-type Query {
-  myProfile: User!
-  organizations: [Organization!]!
-  organization(id: ID!): Organization
+type Study {
+  id: ID!
+  name: String!
+  status: String!
+  numapproved: Int!
+  numparticipants: Int!
+  numpatients: Int!
+  numpending: Int!
+  numrejected: Int!
+  sponsor: Sponsor
+}
+
+type Sponsor {
+  id: ID!
+  name: String!
+  filename: String!
 }
 
 input OrganizationUpdate {
@@ -55,6 +67,14 @@ input OrganizationUpdate {
   state: String
   city: String
   postalCode: String
+}
+
+type Query {
+  myProfile: User!
+  organizations: [Organization!]!
+  organization(id: ID!): Organization!
+  studies: [Study!]!
+  study(id: ID!): Study!
 }
 
 type Mutation {
