@@ -10,8 +10,6 @@ export const Mutation = {
         },
       });
 
-      console.log({ ...org.data, ...value });
-
       const res = await axios.put(
         `/organizations/${id}`,
         {
@@ -30,7 +28,6 @@ export const Mutation = {
         ...res.data,
       };
     } catch (e) {
-      console.log(e);
       throw new GraphQLYogaError("Could not update");
     }
   },
