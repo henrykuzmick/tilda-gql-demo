@@ -6,6 +6,7 @@ export const Sponsor = {
   logo: async (obj, __, { token }) => {
     try {
       const res = await axios.get(`/sponsorLogos/${obj.tildaid}`, {
+        responseType: "arraybuffer",
         headers: {
           authorization: token,
           accept: "image/png",
