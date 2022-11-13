@@ -1,14 +1,15 @@
 import { GraphQLYogaError } from "graphql-yoga";
 import axios from "axios";
 
-export const Query = {
-  myProfile: async (_, __, { token }) => {
+export const OrgMembership = {
+  organization: async (obj, __, { token }) => {
     try {
-      const res = await axios.get("/myprofile", {
+      const res = await axios.get(`/organizations/${obj.orgId}`, {
         headers: {
           authorization: token,
         },
       });
+
       return {
         id: res.data.tildaid,
         ...res.data,
@@ -18,24 +19,20 @@ export const Query = {
     }
   },
 
-  organizations: async (_, __, { token }) => {
+  user: async (obj, __, { token }) => {
     try {
-      const res = await axios.get("/organizations", {
+      const res = await axios.get(`/users/${obj.userId}`, {
         headers: {
           authorization: token,
         },
       });
 
-      return res.data.map((org) => ({
-        id: org.tildaid,
-        ...org,
-      }));
+      return {
+        id: res.data.tildaid,
+        ...res.data,
+      };
     } catch (e) {
       throw new GraphQLYogaError("Could not fetch");
     }
-  },
-
-  organization: async (_, { id }) => {
-    return null;
   },
 };

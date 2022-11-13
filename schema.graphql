@@ -11,6 +11,7 @@ type Organization {
   contactPhone: String
   bio: String
   orgType: OrgType!
+  orgMemberships: [OrgMembership!]!
 }
 
 enum OrgType {
