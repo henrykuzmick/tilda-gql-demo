@@ -10,6 +10,7 @@ const typeDefs = readFileSync(join(process.cwd(), "./schema.graphql"), {
 });
 
 export const gqlServer = createServer({
+  endpoint: "/",
   graphiql: true,
   context: async ({ req }) => {
     return {
