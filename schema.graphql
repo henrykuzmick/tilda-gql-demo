@@ -1,5 +1,5 @@
 type Organization {
-  id: ID!
+  tildaid: ID!
   alias: String
   name: String!
   url: String
@@ -21,7 +21,7 @@ enum OrgType {
 }
 
 type User {
-  id: ID!
+  tildaid: ID!
   onboarded: Boolean!
   username: String!
   name: String
@@ -40,7 +40,7 @@ type OrgMembership {
 }
 
 type Study {
-  id: ID!
+  tildaid: ID!
   name: String!
   status: String!
   numapproved: Int!
@@ -48,14 +48,46 @@ type Study {
   numpatients: Int!
   numpending: Int!
   numrejected: Int!
-  sponsor: Sponsor
 }
 
-type Sponsor {
-  id: ID!
+type Site {
+  tildaid: ID!
   name: String!
-  filename: String
-  logo: String
+  address: String!
+  capacity: String
+  city: String!
+  contactEmail: String
+  contactPhone: String
+  country: String!
+  createdAt: Float!
+  daysOfWeek: String
+  description: String
+  googleMapUrl: String
+  holdBitmap: Int
+  holidaysList: String
+  latitude: Float
+  longitude: Float
+  orgId: ID!
+  outstandingQueries: Int
+  postalCode: String!
+  primaryLocationId: ID
+  siteLogo: String
+  smoId: ID
+  state: String!
+  status: String!
+  streetAddress: String!
+  studiesSummary: [StudyStatusCount!]
+  subjectsCount: Int
+  suite: String
+  timeZone: String
+  twilioNumber: String
+  updatedAt: Float!
+  studies: [Study!]!
+}
+
+type StudyStatusCount {
+  status: String!
+  count: Int!
 }
 
 input OrganizationUpdate {
@@ -76,6 +108,7 @@ type Query {
   organization(id: ID!): Organization!
   studies: [Study!]!
   study(id: ID!): Study!
+  sites: [Site!]!
 }
 
 type Mutation {

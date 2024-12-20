@@ -15,6 +15,7 @@ export const gqlServer = createServer({
   context: async ({ req }) => {
     return {
       token: req.headers.authorization,
+      organization: req.headers.organization,
     };
   },
   schema: {
@@ -23,7 +24,7 @@ export const gqlServer = createServer({
   },
 });
 
-axios.defaults.baseURL = "https://final-test.dev.tilda.pizza/api";
+axios.defaults.baseURL = "https://master.tilda.pizza/api";
 axios.defaults.headers.common["accept"] = "application/json";
 axios.defaults.headers.common["accept-encoding"] = "gzip, deflate, br";
 axios.defaults.headers.common["accept-language"] = "en-GB,en-US;q=0.9,en;q=0.8";

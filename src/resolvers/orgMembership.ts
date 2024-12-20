@@ -10,10 +10,7 @@ export const OrgMembership = {
         },
       });
 
-      return {
-        id: res.data.tildaid,
-        ...res.data,
-      };
+      return res.data;
     } catch (e) {
       throw new GraphQLYogaError("Could not fetch");
     }
@@ -27,10 +24,7 @@ export const OrgMembership = {
         },
       });
 
-      return {
-        id: res.data.tildaid,
-        ...res.data,
-      };
+      return res.data;
     } catch (e) {
       throw new GraphQLYogaError("Could not fetch");
     }

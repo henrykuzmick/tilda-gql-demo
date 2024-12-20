@@ -9,27 +9,22 @@ export const Query = {
           authorization: token,
         },
       });
-      return {
-        id: res.data.tildaid,
-        ...res.data,
-      };
+      return res.data;
     } catch (e) {
       throw new GraphQLYogaError("Could not fetch");
     }
   },
 
-  organizations: async (_, __, { token }) => {
+  organizations: async (_, __, { token, organization }) => {
     try {
       const res = await axios.get("/organizations", {
         headers: {
           authorization: token,
+          organization,
         },
       });
 
-      return res.data.map((org) => ({
-        id: org.tildaid,
-        ...org,
-      }));
+      return res.data;
     } catch (e) {
       throw new GraphQLYogaError("Could not fetch");
     }
@@ -43,27 +38,26 @@ export const Query = {
         },
       });
 
-      return {
-        id: res.data.tildaid,
-        ...res.data,
-      };
+      return res.data;
     } catch (e) {
       throw new GraphQLYogaError("Could not fetch");
     }
   },
 
-  studies: async (_, __, { token }) => {
+  studies: async (_, __, { token, organization }) => {
     try {
       const res = await axios.get("/studies", {
+        params: {
+          filter: "my-studies",
+          limit: 30,
+        },
         headers: {
           authorization: token,
+          organization,
         },
       });
 
-      return res.data.result.map((org) => ({
-        id: org.tildaid,
-        ...org,
-      }));
+      return res.data;
     } catch (e) {
       throw new GraphQLYogaError("Could not fetch");
     }
@@ -77,11 +71,26 @@ export const Query = {
         },
       });
 
-      return {
-        id: res.data.tildaid,
-        ...res.data,
-      };
+      return res.data;
     } catch (e) {
+      throw new GraphQLYogaError("Could not fetch");
+    }
+  },
+
+  sites: async (_, __, { token, organization }) => {
+    try {
+      const res = await axios.get("/sites", {
+        headers: {
+          authorization: token,
+          organization,
+        },
+      });
+
+      console.log(res.data);
+
+      return res.data.sitesList;
+    } catch (e) {
+      console.log(e);
       throw new GraphQLYogaError("Could not fetch");
     }
   },

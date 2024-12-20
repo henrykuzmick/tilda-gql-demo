@@ -1,10 +1,10 @@
 import { OrgMembership } from "./orgMembership";
 import { Organization } from "./organization";
 import { Mutation } from "./mutation";
-import { Sponsor } from "./sponsor";
 import { Query } from "./query";
 import { Study } from "./study";
 import { User } from "./user";
+import { Site } from "./site";
 
 export const resolvers = {
   Query,
@@ -12,6 +12,6 @@ export const resolvers = {
   User,
   Organization,
   OrgMembership,
-  Sponsor,
   Study,
+  Site,
 };
